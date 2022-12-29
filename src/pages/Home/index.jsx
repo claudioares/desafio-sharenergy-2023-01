@@ -1,12 +1,11 @@
 import {ContainerHome} from './styled';
-
+import SideBar from '../../components/SiderBar';
 
 function Home() {
 
   return (
     <ContainerHome>
-      <h1>Bem vindo a minha home!</h1>
-      Página em construção!!
+      <SideBar />
     </ContainerHome>
   )
 }
