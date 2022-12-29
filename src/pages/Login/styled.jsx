@@ -61,6 +61,7 @@ export const Form = styled.form`
 
 `
 export const DivInput = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,7 +72,7 @@ export const DivInput = styled.div`
         color:  #E4E8E8;
         border-bottom: 1px solid #FFFFFF;
 
-        padding: 1rem 0;
+        padding: 1rem;
 
         &::placeholder{
             font-family: 'Nunito';
@@ -84,6 +85,19 @@ export const DivInput = styled.div`
             color: rgba(255, 255, 255, 0.33);
         }
     }
-
     margin-bottom: 5rem;
+    img{
+        width: 2.1rem;
+        height: 2.7rem;
+    }
+`
+export const ImgUser = styled.div`
+    position: absolute;
+    bottom: 6%;
+    left: 4%;
+`
+export const ImgPassword = styled.div`
+    position: absolute;
+    top: 1%;
+    left: 4%;
 `
