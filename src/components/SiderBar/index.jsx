@@ -3,34 +3,52 @@ import {
     DivImagem,
     DivInforUser,
     DivIcons,
-    DivEmail
+    DivInforUserComplet
 } from './styled';
-import iconEmail from '../../assets/SiderBar/iconEmail.svg';
 import iconHappyDay from '../../assets/SiderBar/iconHappyDay.svg';
 import iconLocalite from '../../assets/SiderBar/iconLocalite.svg';
 import iconPhone from '../../assets/SiderBar/iconPhone.svg';
 import imgUserExemple from '../../assets/SiderBar/imgUserExemple.svg';
+import { useContext } from 'react';
+import { ContextApi } from '../context/ContextApi';
 
 function SideBar () {
+
+
+    const {
+        client
+    } = useContext(ContextApi)
+
     return(
         <ContainerSiderBar>
                 <DivImagem>
-                    <img src={imgUserExemple} alt='Imagem do usuario'/>
+                    <img src={client.picture.large} alt='Imagem do usuario'/>
                 </DivImagem>
                 <DivInforUser>
-                    <h3>Natalia Campos</h3>
-                    <p>@liaCampos</p>
-                    <span>22 anos</span>
+                    <h3>{client.name.first} {client.name.last}</h3>
+                    <p>@{client.login.username}</p>
+                    <span>{client.dob.age} anos</span>
                 </DivInforUser>
                 <DivIcons>
-                    <img src={iconEmail} alt='icone de email'/>
-                    <img src={iconPhone} alt='icone de fone'/>
-                    <img src={iconHappyDay} alt='icone de aniversario'/>
-                    <img src={iconLocalite} alt='icone de localização'/>
+                    <img 
+                        src={iconPhone} 
+                        alt='icone de fone'
+                        onClick={()=>alert('icone de telefone')}
+                    />
+                    <img 
+                        src={iconHappyDay} 
+                        alt='icone de aniversario'
+                        onClick={()=>alert('icone de aniversario')}
+                    />
+                    <img 
+                        src={iconLocalite} 
+                        alt='icone de localização'
+                        onClick={()=>alert('icone de localização')}
+                    />
                 </DivIcons>
-                <DivEmail>
-                    <p>nat_compos@email.com</p>
-                </DivEmail>
+                <DivInforUserComplet>
+                    <p>{client.email}</p>
+                </DivInforUserComplet>
         </ContainerSiderBar>
     )
 }

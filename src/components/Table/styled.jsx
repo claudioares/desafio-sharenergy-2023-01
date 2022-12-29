@@ -50,12 +50,13 @@ export const Img = styled.img`
     height: 1.7rem;
     right: 1%;
 `
-export const DivTable = styled.div`
-    ul{
+export const DivTable = styled.table`
+    border-collapse: collapse;
+    tr{
         display: flex;
         align-items: center;
     }
-    ul li{
+    tr th{
         list-style: none;
         width: 33.3rem;
         height: 6.7rem;

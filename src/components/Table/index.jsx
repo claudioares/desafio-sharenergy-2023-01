@@ -5,9 +5,18 @@ import {
     DivTable
 } from './styled';
 import iconSearch from '../../assets/Table/iconSearch.svg';
-
+import { useContext } from 'react';
+import { ContextApi } from '../context/ContextApi'
 
 function SideBar () {
+
+   const {
+        listClients,
+        setClient
+    } = useContext(ContextApi)
+
+
+   
     return(
         <ContainerTable>
             <div>
@@ -16,16 +25,24 @@ function SideBar () {
                     <Img src={iconSearch} alt="Icone de pesquisar" />
                 </DivSearch>
                 <DivTable>
-                    <ul>
-                        <li>Nome</li>
-                        <li>Username</li>
-                        <li>Email</li>
-                    </ul>
-                    <ul>
-                        <li className='green'>Cláudio Soares</li>
-                        <li className='blue'>@dinhoares</li>
-                        <li className='blue'>claudio@email.com</li>
-                    </ul>
+                    <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        {listClients.slice(0, 9).map(client => (
+                            <tr key={client.email}>
+                                <th className='green'
+                                    onClick={(e)=>setClient(client)}
+                                >{client.name.first} {client.name.last}</th>
+                                <th className='blue'>@{client.login.username}</th>
+                                <th className='blue'>{client.email}</th>
+                            </tr>
+                        ))}
+                    </tbody>
                   
                 </DivTable>
             </div>

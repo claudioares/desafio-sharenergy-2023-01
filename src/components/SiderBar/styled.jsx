@@ -7,7 +7,7 @@ export const ContainerSiderBar = styled.div`
     align-items: center;
     
     padding-top: 7.6rem;
-    width: 27.6rem;
+    width: 20%;
     height: 100%;
 
     background-color: #1B2F36;
@@ -99,7 +99,7 @@ export const DivIcons = styled.div`
         }
     }
 `
-export const DivEmail = styled.div`
+export const DivInforUserComplet = styled.div`
     p{
         display: flex;
         align-items: center;
