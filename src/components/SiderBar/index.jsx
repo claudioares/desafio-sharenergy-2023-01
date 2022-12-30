@@ -9,7 +9,7 @@ import iconHappyDay from '../../assets/SiderBar/iconHappyDay.svg';
 import iconLocalite from '../../assets/SiderBar/iconLocalite.svg';
 import iconPhone from '../../assets/SiderBar/iconPhone.svg';
 import imgUserExemple from '../../assets/SiderBar/imgUserExemple.svg';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ContextApi } from '../context/ContextApi';
 
 function SideBar () {
@@ -19,15 +19,39 @@ function SideBar () {
         client
     } = useContext(ContextApi)
 
+    const [dataClients, setDataClients] = useState({
+        image: imgUserExemple,
+        name: '',
+        username: '',
+        age: null,
+        email: ''
+    })
+    useEffect(()=>{
+        if(client.length === 0){
+            return;
+        }
+
+        setDataClients({
+            image: client.picture.large,
+            name: client.name.first +' '+ client.name.last,
+            username: client.login.username,
+            age: client.registered.age,
+            email: client.email
+        })
+    }, [client])
+
+
+
+
     return(
         <ContainerSiderBar>
                 <DivImagem>
-                    <img src={client.picture.large} alt='Imagem do usuario'/>
+                    <img src={dataClients.image} alt='Imagem do usuario'/>
                 </DivImagem>
                 <DivInforUser>
-                    <h3>{client.name.first} {client.name.last}</h3>
-                    <p>@{client.login.username}</p>
-                    <span>{client.dob.age} anos</span>
+                    <h3>{dataClients.name}</h3>
+                    <p>@{dataClients.username}</p>
+                    <span>{dataClients.age} anos</span>
                 </DivInforUser>
                 <DivIcons>
                     <img 
@@ -47,7 +71,7 @@ function SideBar () {
                     />
                 </DivIcons>
                 <DivInforUserComplet>
-                    <p>{client.email}</p>
+                    <p>{dataClients.email}</p>
                 </DivInforUserComplet>
         </ContainerSiderBar>
     )

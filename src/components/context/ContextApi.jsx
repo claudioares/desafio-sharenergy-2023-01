@@ -11,7 +11,7 @@ function ContextProvider ({children}) {
 
     useEffect(()=>{
         async function loadClients () {
-            const response = await api.get('/?results=5000');
+            const response = await api.get('/?results=100');
             setListClients(response.data.results)
         }
         loadClients();

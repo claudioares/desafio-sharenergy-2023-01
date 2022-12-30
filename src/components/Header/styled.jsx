@@ -4,10 +4,10 @@ import styled from "styled-components";
 export const ContainerHeader = styled.div`
     display: flex;
     align-items: center;
+    justify-content: space-between;
     min-width:100%;
     height: 7.6rem;
-    padding-left: 63.1rem;
-
+    padding: 0 4.5%;
     background-color: #1B2F36;
 `
 export const Ul = styled.ul`

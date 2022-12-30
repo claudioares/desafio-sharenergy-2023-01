@@ -7,7 +7,7 @@ export const ContainerSiderBar = styled.div`
     align-items: center;
     
     padding-top: 7.6rem;
-    width: 20%;
+    width: 25%;
     height: 100%;
 
     background-color: #1B2F36;

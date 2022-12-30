@@ -8,9 +8,9 @@ const MainHouter = () =>{
      return(
         <Routes>
             <Route  path='/' element={<Login />} />
-            <Route element={<Header />} >
                 <Route  path='/home' element={<Home />} />
                 <Route  path='/statuscat' element={<StatusCat />} />
+                <Route element={<Header />} >
             </Route>
         </Routes>
      )
