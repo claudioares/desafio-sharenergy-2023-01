@@ -2,12 +2,11 @@ import {
     ContainerSiderBar,
     DivImagem,
     DivInforUser,
-    DivIcons,
-    DivInforUserComplet
+    DivInforUserComplet,
+    MoreAbout,
+    DivEndress
 } from './styled';
-import iconHappyDay from '../../assets/SiderBar/iconHappyDay.svg';
-import iconLocalite from '../../assets/SiderBar/iconLocalite.svg';
-import iconPhone from '../../assets/SiderBar/iconPhone.svg';
+
 import imgUserExemple from '../../assets/SiderBar/imgUserExemple.svg';
 import { useContext, useEffect, useState } from 'react';
 import { ContextApi } from '../context/ContextApi';
@@ -21,10 +20,18 @@ function SideBar () {
 
     const [dataClients, setDataClients] = useState({
         image: imgUserExemple,
-        name: '',
-        username: '',
+        name: null,
+        username: null,
         age: null,
-        email: ''
+        email: null,
+        fone: null,
+        happy_d: null,
+        endress: {
+            street: null,
+            number: null,
+            city: null,
+            state: null
+        }
     })
     useEffect(()=>{
         if(client.length === 0){
@@ -36,43 +43,45 @@ function SideBar () {
             name: client.name.first +' '+ client.name.last,
             username: client.login.username,
             age: client.registered.age,
-            email: client.email
+            email: client.email,
+            fone: client.cell,
+            happy_d: client.dob.date,
+            endress: {
+                street: client.location.street.name,
+                number: client.location.street.number,
+                city: client.location.city,
+                state: client.location.state
+            }
         })
     }, [client])
-
-
-
+    
 
     return(
         <ContainerSiderBar>
                 <DivImagem>
                     <img src={dataClients.image} alt='Imagem do usuario'/>
                 </DivImagem>
+                {dataClients.name && <>
                 <DivInforUser>
                     <h3>{dataClients.name}</h3>
                     <p>@{dataClients.username}</p>
                     <span>{dataClients.age} anos</span>
                 </DivInforUser>
-                <DivIcons>
-                    <img 
-                        src={iconPhone} 
-                        alt='icone de fone'
-                        onClick={()=>alert('icone de telefone')}
-                    />
-                    <img 
-                        src={iconHappyDay} 
-                        alt='icone de aniversario'
-                        onClick={()=>alert('icone de aniversario')}
-                    />
-                    <img 
-                        src={iconLocalite} 
-                        alt='icone de localização'
-                        onClick={()=>alert('icone de localização')}
-                    />
-                </DivIcons>
+        
                 <DivInforUserComplet>
-                    <p>{dataClients.email}</p>
+                    <MoreAbout>
+                        <DivEndress>
+                            <p>Fone: {dataClients.fone}</p>
+                            <p>Aniversário: {dataClients.happy_d}</p>
+                            <p className='endress'>Endereço:</p>
+                            <p>
+                                {dataClients.endress.street}, {dataClients.endress.number}
+                            </p>
+                            <p>{dataClients.endress.city} / {dataClients.endress.state}</p>
+                        </DivEndress>
+                    </MoreAbout>
                 </DivInforUserComplet>
+                </>}
         </ContainerSiderBar>
     )
 }

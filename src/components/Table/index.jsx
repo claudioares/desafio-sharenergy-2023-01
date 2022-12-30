@@ -24,12 +24,12 @@ function SideBar () {
             const name = clientName.includes(inputClient)
             const username = clnt.login.username.includes(inputClient)
             const email = clnt.email.includes(inputClient)
-            if(name || username || email ) return name, username, email
+            if(name || username || email ) return name, username, email;
         })
         : [];
 
-        console.log(repoFilter);
-  
+
+        
     return(
         <ContainerTable>
             <div>

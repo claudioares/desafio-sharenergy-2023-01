@@ -7,7 +7,7 @@ export const ContainerSiderBar = styled.div`
     align-items: center;
     
     padding-top: 7.6rem;
-    width: 25%;
+    min-width: 20%;
     height: 100%;
 
     background-color: #1B2F36;
@@ -31,7 +31,6 @@ export const DivImagem = styled.div`
         width: 14.7rem;
         height: 14.7rem;
         border-radius: 50%;
-        cursor: pointer;
     }
 `
 export const DivInforUser = styled.div`
@@ -83,23 +82,25 @@ export const DivInforUser = styled.div`
         color: #FFBC42;
     }
 `
-export const DivIcons = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 12.7rem;
-
-    margin-bottom: 1.4rem;
-
-    img{
-        cursor: pointer;
-
-        &:hover{
-            transform:scale3d(1.3,1.3,1.3);
-        }
-    }
-`
 export const DivInforUserComplet = styled.div`
+    width: 100%;
+`
+export const MoreAbout = styled.div`
+    margin-top: 3rem;
+    display: flex;
+    align-items:center;
+    flex-direction: column;
+
+    width: 100%;
+
+`
+export const DivEndress = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+
+    width: 100%;
+
     p{
         display: flex;
         align-items: center;
@@ -112,5 +113,9 @@ export const DivInforUserComplet = styled.div`
         line-height: 22px;
 
         color: #FFBC42;
+    }
+    .endress{
+        margin-top: 1rem;
+        color: #E4E8E8;
     }
 `
