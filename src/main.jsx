@@ -7,11 +7,11 @@ import ContextProvider from './components/context/ContextApi';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
     <ContextProvider>
-      <GlobalStyled />
-      <MainHouter />
+      <BrowserRouter>
+        <GlobalStyled />
+        <MainHouter />
+      </BrowserRouter>
     </ContextProvider>
-    </BrowserRouter>
   </React.StrictMode>
 )

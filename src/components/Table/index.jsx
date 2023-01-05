@@ -5,31 +5,10 @@ import {
     DivTable
 } from './styled';
 import iconSearch from '../../assets/Table/iconSearch.svg';
-import { useContext, useState } from 'react';
-import { ContextApi } from '../context/ContextApi'
-
-function SideBar () {
-
-   const {
-        listClients,
-        setClient
-    } = useContext(ContextApi)
-
-    const [inputClient, setInputCLient] = useState('')
-
-   
-    const repoFilter = inputClient.length > 0
-        ? listClients.filter(clnt => {
-            let clientName = clnt.name.first + ' ' + clnt.name.last;
-            const name = clientName.includes(inputClient)
-            const username = clnt.login.username.includes(inputClient)
-            const email = clnt.email.includes(inputClient)
-            if(name || username || email ) return name, username, email;
-        })
-        : [];
 
 
-        
+function Table ({ listClients, setClient, setInputCLient, repoFilter, inputClient}) {
+
     return(
         <ContainerTable>
             <div>
@@ -84,4 +63,4 @@ function SideBar () {
     )
 }
 
-export default SideBar;
+export default Table;

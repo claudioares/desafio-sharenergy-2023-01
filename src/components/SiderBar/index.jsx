@@ -1,11 +1,11 @@
 import {
-    ContainerSiderBar,
     DivImagem,
     DivInforUser,
     DivInforUserComplet,
     MoreAbout,
     DivEndress
 } from './styled';
+import {  ContainerSiderBar } from '../../globalStyled';
 
 import imgUserExemple from '../../assets/SiderBar/imgUserExemple.svg';
 import { useContext, useEffect, useState } from 'react';
@@ -58,30 +58,30 @@ function SideBar () {
 
     return(
         <ContainerSiderBar>
-                <DivImagem>
-                    <img src={dataClients.image} alt='Imagem do usuario'/>
-                </DivImagem>
-                {dataClients.name && <>
-                <DivInforUser>
-                    <h3>{dataClients.name}</h3>
-                    <p>@{dataClients.username}</p>
-                    <span>{dataClients.age} anos</span>
-                </DivInforUser>
-        
-                <DivInforUserComplet>
-                    <MoreAbout>
-                        <DivEndress>
-                            <p>Fone: {dataClients.fone}</p>
-                            <p>Aniversário: {dataClients.happy_d}</p>
-                            <p className='endress'>Endereço:</p>
-                            <p>
-                                {dataClients.endress.street}, {dataClients.endress.number}
-                            </p>
-                            <p>{dataClients.endress.city} / {dataClients.endress.state}</p>
-                        </DivEndress>
-                    </MoreAbout>
-                </DivInforUserComplet>
-                </>}
+            <DivImagem>
+                <img src={dataClients.image} alt='Imagem do usuario'/>
+            </DivImagem>
+            {dataClients.name && <>
+            <DivInforUser>
+                <h3>{dataClients.name}</h3>
+                <p>@{dataClients.username}</p>
+                <span>{dataClients.age} anos</span>
+            </DivInforUser>
+    
+            <DivInforUserComplet>
+                <MoreAbout>
+                    <DivEndress>
+                        <p>Fone: {dataClients.fone}</p>
+                        <p>Aniversário: {dataClients.happy_d}</p>
+                        <p className='endress'>Endereço:</p>
+                        <p>
+                            {dataClients.endress.street}, {dataClients.endress.number}
+                        </p>
+                        <p>{dataClients.endress.city} / {dataClients.endress.state}</p>
+                    </DivEndress>
+                </MoreAbout>
+            </DivInforUserComplet>
+            </>}
         </ContainerSiderBar>
     )
 }

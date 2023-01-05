@@ -6,7 +6,7 @@ export const ContainerTable = styled.div`
     flex-direction: column;
     align-items: center;
 
-    width: 100%;
+    min-width: 80%;
     padding: 6.2rem 9.4rem 0 6.7rem;
    
 `
@@ -27,7 +27,7 @@ export const DivSearch = styled.div`
 
         background-color: #FFFFFF;
         border: 0.1rem solid #b7bdbd;
-        border-radius: 15px;
+        border-radius: 1.5rem;
 
         padding-left: 2.4rem;
         

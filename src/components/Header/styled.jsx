@@ -7,14 +7,20 @@ export const ContainerHeader = styled.div`
     justify-content: space-between;
     min-width:100%;
     height: 7.6rem;
-    padding: 0 4.5%;
+    padding: 0 4.5% 0 4.5%;
     background-color: #1B2F36;
+
+    .exit{
+        cursor: pointer;
+    }
 `
 export const Ul = styled.ul`
-    width: 44.6rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
+    min-width: 40%;
+    gap: 1rem;
 
     font-family: 'Nunito';
     font-style: normal;

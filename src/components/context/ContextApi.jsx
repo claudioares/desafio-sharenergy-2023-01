@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
-import api from '../../services/api';
+import { api } from '../../services/api';
+import { useLocalStorage } from "react-use";
 
 
 export const ContextApi = createContext();
@@ -8,6 +9,8 @@ function ContextProvider ({children}) {
 
     const [ listClients, setListClients ] = useState([]);
     const [client, setClient] = useState([])
+    const [token, setToken, clearToken] = useLocalStorage('token');
+    const [user, setUser, clearUser] = useLocalStorage('user');
 
     useEffect(()=>{
         async function loadClients () {
@@ -17,12 +20,11 @@ function ContextProvider ({children}) {
         loadClients();
     }, [])
 
-
     return(
         <ContextApi.Provider value={{
-            listClients,
-            client,
-            setClient
+            listClients, client,setClient,
+            token, setToken, clearToken,
+            user, setUser, clearUser
         }} >
             {children}
         </ContextApi.Provider>
