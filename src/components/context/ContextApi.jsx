@@ -8,9 +8,11 @@ export const ContextApi = createContext();
 function ContextProvider ({children}) {
 
     const [ listClients, setListClients ] = useState([]);
-    const [client, setClient] = useState([])
-    const [token, setToken, clearToken] = useLocalStorage('token');
-    const [user, setUser, clearUser] = useLocalStorage('user');
+    const [ client, setClient ] = useState([])
+    const [ token, setToken, clearToken ] = useLocalStorage('token');
+    const [ user, setUser, clearUser ] = useLocalStorage('user');
+    const [ contacts, setContacts ] = useState([]);
+    const [currentContact, setCurrentContact, clearCurrentContact] = useLocalStorage('current_contact')
 
     useEffect(()=>{
         async function loadClients () {
@@ -24,7 +26,9 @@ function ContextProvider ({children}) {
         <ContextApi.Provider value={{
             listClients, client,setClient,
             token, setToken, clearToken,
-            user, setUser, clearUser
+            user, setUser, clearUser,
+            contacts, setContacts,
+            currentContact, setCurrentContact, clearCurrentContact
         }} >
             {children}
         </ContextApi.Provider>

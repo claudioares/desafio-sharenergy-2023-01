@@ -16,9 +16,7 @@ export const ContenteTable = styled.table`
         color: #ece9e3;
 
     }
-    th{
-        padding: 0.5rem;
-    }
+  
     .content_body {
         width: calc(100% / 5);
         background-color: antiquewhite;
@@ -27,28 +25,19 @@ export const ContenteTable = styled.table`
         th{
             cursor: pointer;
             &:hover{
-                opacity:0.8;
+                opacity:0.9;
             }
         }
     }
     .div_trash{
-        all: unset;
         display: flex;
         align-items: center;
         justify-content: center;
         
         gap: 1.9rem;
-        padding: 0.5rem;
+        padding: 0.9rem;
 
         background-color: #297c91;
-
-        img{
-            cursor: pointer;
-
-            &:hover{
-                opacity: 0.8;
-            }
-        }
     }
 `
 export const RegisterClient = styled.div`

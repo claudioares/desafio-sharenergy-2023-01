@@ -10,6 +10,13 @@ const UserListingSchema = new Schema({
     name: String,
     email: String,
     password: String,
+    phone: String,
+    cpf:String,
+    street: String,
+    number: String,
+    city: String,
+    country: String
+
 })
 
 const UserListing = mongoose.model('userBD', UserListingSchema)

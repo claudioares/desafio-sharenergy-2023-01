@@ -13,6 +13,7 @@ routes.post('/sign', UserController.create)
 routes.post('/login', UserController.login)
 
 routes.use(filterAutentication);
+routes.post('/addclient', UserController.addClient)
 routes.get('/listing', UserController.listing)
 routes.get('/listing/:id', UserController.listingUser)
 routes.put('/update/:id', UserController.update)

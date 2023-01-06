@@ -32,6 +32,7 @@ class UserController {
                 return res.status(404).json({message: "Failed to create user!"});
         }
     }
+
     async login (req:Request, res:Response) {
         try {
             const { email, password } = req.body;
@@ -58,6 +59,32 @@ class UserController {
 
         } catch (error) {
             return res.status(404).json({message: "Failed to login users!"});
+        }
+    }
+
+    async addClient (req:Request, res:Response ){
+        try {
+            const {name, email, phone, street, number, cpf, city, country} = req.body;
+            if(!name || !email || !phone || !street || !number || !cpf || !city || !country) return res.status(400).json({message: "All parameters required"});
+
+            const userAlreadyExists = await UserListing.findOne({email:email});
+            if(userAlreadyExists) return res.status(400).json({message: "This email already exists!"});
+
+            const createUser = await UserListing.create({
+                name,
+                email,
+                phone,
+                street,
+                number,
+                cpf,
+                city,
+                country
+            })
+
+            return res.status(201).json({createUser})
+            
+        } catch (error) {
+            return res.status(404).json({message: "Failed to Add user!"});
         }
     }
 
@@ -88,15 +115,15 @@ class UserController {
     async update (req:Request, res:Response) {
         try {
             const { id } = req.params;
-            const {email, password} = req.body;
+            const {email} = req.body;
 
             const userAlreadyExists = await UserListing.findOne({email:email});
 
             if(userAlreadyExists) return res.status(400).json({message: "This email already exists!"});
+            if(!id) return res.status(404).json({message: "Verify user all params"});
 
             await UserListing.findByIdAndUpdate(id, req.body)
-            if(!id) return res.status(404).json({message: "Verify user all params"});
-            if(!password) return res.status(404).json({message: "Verify all params"})
+          
 
             return res.status(200).json({message: "User updated"});
 
