@@ -28,7 +28,7 @@ function InitPage () {
     const[sign, setSign] = useState(true)
 
      // STATES LOGIN
-     const [emailLGN, setEmailLGN] = useState('')
+     const [nameLGN, setEmailLGN] = useState('')
      const [passwordLGN, setPasswordLGN] = useState('')
     
     // STATES SINGIN
@@ -47,7 +47,7 @@ function InitPage () {
             if(!nameSN || !emailSN || !passwordSN) return
 
             const response = await apiMongoDB.post('/sign', {
-                name: nameSN,
+                username: nameSN,
                 email: emailSN,
                 password: passwordSN
             });
@@ -70,7 +70,7 @@ function InitPage () {
 
         try {
             const response = await apiMongoDB.post('/login',{
-                email: emailLGN,
+                username: nameLGN,
                 password: passwordLGN
             })
 
@@ -126,9 +126,9 @@ function InitPage () {
                         </ImgPassword>
                         <input 
                             type='text' 
-                            name='email' 
-                            placeholder='Email'
-                            value={emailLGN}
+                            name='username' 
+                            placeholder='Username'
+                            value={nameLGN}
                             onChange={(e)=> setEmailLGN(e.target.value)}
                         />
                         <input 

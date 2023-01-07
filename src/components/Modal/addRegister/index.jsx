@@ -15,7 +15,7 @@ function AddRegister ({setAddRegister}) {
         token, contacts, setContacts
      } = useContext(ContextApi)
 
-    const [ name, setName ] = useState('')
+    const [ username, setUsername ] = useState('')
     const [ email, setEmail ] = useState('')
     const [ phone, setPhone ] = useState('')
     const [ cpf, setCpf ] = useState('')
@@ -31,7 +31,7 @@ function AddRegister ({setAddRegister}) {
         try {
 
             const response = await apiMongoDB.post('/addclient',{
-                name,
+                username,
                 email,
                 phone,
                 cpf,
@@ -66,9 +66,9 @@ function AddRegister ({setAddRegister}) {
                 <h2>Adicionar Registro</h2>
                 <DivInput>
                     <div className='cell01'>
-                        <input type='text' name='name' placeholder='Nome'
-                            value={name}
-                            onChange={(e)=>setName(e.target.value)}
+                        <input type='text' name='name' placeholder='username'
+                            value={username}
+                            onChange={(e)=>setUsername(e.target.value)}
                         />
                         <input type='text' name='email' placeholder='Email' 
                             value={email}

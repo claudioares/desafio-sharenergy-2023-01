@@ -7,7 +7,7 @@ const ObjectId = Schema.ObjectId;
 
 const UserListingSchema = new Schema({
     id: ObjectId,
-    name: String,
+    username: String,
     email: String,
     password: String,
     phone: String,

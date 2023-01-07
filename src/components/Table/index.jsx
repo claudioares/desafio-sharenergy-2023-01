@@ -5,14 +5,88 @@ import {
     DivTable
 } from './styled';
 import iconSearch from '../../assets/Table/iconSearch.svg';
+import Pagination from '../../pagination/pagination';
+import { useContext, useState } from 'react'
+import { ContextApi } from '../context/ContextApi';
 
+function Table () {
+    const [offset, setOffSet] = useState(0)
+    const LIMIT_LINES = 8;
+    let currentLimitLine = offset + 8;
 
-function Table ({ listClients, setClient, setInputCLient, repoFilter, inputClient}) {
+    const { 
+        setClient, 
+        listClients,
+        LIMIT
+    } = useContext(ContextApi);
+
+    const [selectBttn, setSelectBttn] = useState({
+        name: true,
+        username: false,
+        email: false
+    })
+    const [inputClient, setInputCLient] = useState('')
+    const repoFilter = inputClient.length > 0
+        ? listClients.filter(clnt => {
+            let clientName = clnt.name.first + ' ' + clnt.name.last;
+            const name = clientName.includes(inputClient)
+            const username = clnt.login.username.includes(inputClient)
+            const email = clnt.email.includes(inputClient)
+
+            if(selectBttn.name) return name;
+            if(selectBttn.username) return username;
+            if(selectBttn.email) return email;
+        })
+        : [];
+
+   
+
+        function selectBtton (e) {
+            const selectChildren = e.target.innerText;
+           
+            if(selectChildren === 'Nome'){
+                setSelectBttn({
+                    name: true,
+                    username: false,
+                    email: false
+                })
+            }
+            if(selectChildren === 'Usename'){
+                setSelectBttn({
+                    name: false,
+                    username: true,
+                    email: false
+                })
+            }
+            if(selectChildren === 'Email'){
+                setSelectBttn({
+                    name: false,
+                    username: false,
+                    email: true
+                })
+            }
+
+        }
+
 
     return(
+
         <ContainerTable>
             <div>
                 <DivSearch>
+                    <h4>Escolha o modo de pesquisa!</h4>
+                    <button 
+                        onClick={(e)=>selectBtton(e)}
+                        className={selectBttn.name ? 'selectButtonColor' : null}
+                    >Nome</button>
+                    <button
+                        onClick={(e)=>selectBtton(e)}
+                        className={selectBttn.username ? 'selectButtonColor' : null}
+                    >Usename</button>
+                    <button
+                        onClick={(e)=>selectBtton(e)}
+                        className={selectBttn.email ? 'selectButtonColor' : null}
+                    >Email</button>
                     <input 
                         type='text' 
                         name='search' 
@@ -32,7 +106,7 @@ function Table ({ listClients, setClient, setInputCLient, repoFilter, inputClien
                     </thead>
                     {inputClient.length > 0 ? 
                     <tbody>
-                        {repoFilter.slice(0, 9).map(client => (
+                        {repoFilter.slice(0, LIMIT_LINES).map(client => (
                             <tr key={client.email}>
                                 <th className='green'
                                     onClick={(e)=>setClient(client)}
@@ -44,7 +118,7 @@ function Table ({ listClients, setClient, setInputCLient, repoFilter, inputClien
                     </tbody>
                     :
                     <tbody>
-                    {listClients.slice(0, 9).map(client => (
+                    {listClients.slice(offset, currentLimitLine).map(client => (
                             <tr key={client.email}>
                                 <th className='green'
                                     onClick={(e)=>setClient(client)}
@@ -55,10 +129,17 @@ function Table ({ listClients, setClient, setInputCLient, repoFilter, inputClien
                         ))}
                     </tbody>
                     }
-                  
+                
                 </DivTable>
+                {LIMIT && (
+                    <Pagination 
+                        limit={LIMIT_LINES} 
+                        total={LIMIT} 
+                        offset={offset}
+                        setOffSet={setOffSet}
+                    />
+                )}
             </div>
-            
         </ContainerTable>
     )
 }

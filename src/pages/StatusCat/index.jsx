@@ -16,12 +16,6 @@ function StatusCat () {
 
  
 
-    async function handleApiDog () {
-        const response = await apiDog.get('');
-        console.log(response)
-    }
-    handleApiDog();
-
     function handleSubmit (e) {
         e.preventDefault()
 

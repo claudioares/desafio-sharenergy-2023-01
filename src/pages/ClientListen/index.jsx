@@ -68,7 +68,7 @@ function ClientListen () {
                 <ContenteTable>
                     <thead>
                         <tr>
-                            <th>Nome</th>
+                            <th>Username</th>
                             <th>Email</th>
                             <th>Telefone</th>
                             <th>Endereço</th>
@@ -79,7 +79,7 @@ function ClientListen () {
                     <tbody>
                         {contacts.map((contact)=>(
                             <tr className='content_body' key={contact._id} >
-                                <th>{contact.name}</th>
+                                <th>{contact.username}</th>
                                 <th>{contact.email}</th>
                                 <th>{contact.phone}</th>
                                 <th>{contact.street}, {contact.number}. {contact.city}-{contact.country}</th>

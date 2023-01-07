@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const ContainerTable = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 
     min-width: 80%;
     padding: 6.2rem 9.4rem 0 6.7rem;
@@ -12,17 +12,50 @@ export const ContainerTable = styled.div`
 `
 export const DivSearch = styled.div`
     position: relative;
-    width: 100%;
+    min-width: 100%;
 
     display: flex;
     align-items: center;
     justify-content: flex-end;
 
+    gap: 2rem;
     margin-bottom: 4.1rem;
+
+    h4{
+        color: #251b09;
+    }
+
+    .selectButtonColor{
+        background-color: #297c91;
+    }
+
+    button{
+        all: unset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        height: 2.6rem;
+        width: 6rem;
+        background-color: #8c9797;
+        color: #ece9e3;
+        border-radius: 5px;
+        padding: 0.9rem;
+
+        cursor: pointer;
+
+        transition-timing-function: ease;
+        transition-duration: 0.5s;
+        
+        &:hover{
+            opacity: 0.8;
+            transform: translateY(-5px);
+        }
+    }
     input{
         all: unset;
 
-        width: 42.1rem;
+        min-width: 42.1rem;
         height: 3.4rem;
 
         background-color: #FFFFFF;
@@ -46,12 +79,13 @@ export const DivSearch = styled.div`
 `
 export const Img = styled.img`
     position: absolute;
-    width: 1.7rem;
+    min-width: 1.7rem;
     height: 1.7rem;
     right: 1%;
 `
 export const DivTable = styled.table`
     border-collapse: collapse;
+    margin-bottom: 1rem;
     tr{
         display: flex;
         align-items: center;

@@ -7,24 +7,24 @@ import { userToken } from '../Users/token';
 class UserController {
     async create (req:Request, res:Response){
         try {
-            const {name, email, password} = req.body;
-            const userAlreadyExists = await UserListing.findOne({email:email});
+            const {username, email, password} = req.body;
+            const userAlreadyExists = await UserListing.findOne({username:username});
 
             
-            if(userAlreadyExists) return res.status(400).json({message: "This email already exists!"});
-            if(!name || !email || !password) return res.status(400).json({message: "All parameters required"})
+            if(userAlreadyExists) return res.status(400).json({message: "This username already exists!"});
+            if(!username || !email || !password) return res.status(400).json({message: "All parameters required"})
 
             const cryptPassword = await bcrypt.hash(password, 10)
 
 
-            const createdUser = await UserListing.create({
-                name,
+           await UserListing.create({
+                username,
                 email,
                 password:cryptPassword
             })
             
             return res.status(201).json({
-                name, 
+                username, 
                 email
             })
 
@@ -35,15 +35,15 @@ class UserController {
 
     async login (req:Request, res:Response) {
         try {
-            const { email, password } = req.body;
+            const { username, password } = req.body;
 
 
-            if(!email || !password) return res.status(400).json({message: "All parameters required"});
+            if(!username || !password) return res.status(400).json({message: "All parameters required"});
 
-            const user = await UserListing.findOne({email})
+            const user = await UserListing.findOne({username})
             if(user === null) return res.status(400).json({ message: "User not foud!"})
 
-            const { _id, name, email:emailUser } = user;
+            const { _id, username:userName, email:emailUser } = user;
 
             const toCompare = await bcrypt.compare(password, user.password);
             if(!toCompare) return res.status(400).json({ messagem: 'Failed validetion!'})
@@ -52,7 +52,7 @@ class UserController {
 
             return res.status(200).json({
                 _id,
-                name,
+                userName,
                 emailUser,
                 token
             })
@@ -64,14 +64,14 @@ class UserController {
 
     async addClient (req:Request, res:Response ){
         try {
-            const {name, email, phone, street, number, cpf, city, country} = req.body;
-            if(!name || !email || !phone || !street || !number || !cpf || !city || !country) return res.status(400).json({message: "All parameters required"});
+            const {username, email, phone, street, number, cpf, city, country} = req.body;
+            if(!username || !email || !phone || !street || !number || !cpf || !city || !country) return res.status(400).json({message: "All parameters required"});
 
             const userAlreadyExists = await UserListing.findOne({email:email});
             if(userAlreadyExists) return res.status(400).json({message: "This email already exists!"});
 
             const createUser = await UserListing.create({
-                name,
+                username,
                 email,
                 phone,
                 street,

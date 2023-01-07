@@ -14,7 +14,7 @@ function EditRegister ({setEditeRegister}) {
         currentContact, token, contacts, setContacts
      } = useContext(ContextApi)
 
-    const [ name, setName ] = useState('')
+    const [ username, setUsername ] = useState('')
     const [ email, setEmail ] = useState('')
     const [ phone, setPhone ] = useState('')
     const [ cpf, setCpf ] = useState('')
@@ -31,7 +31,7 @@ function EditRegister ({setEditeRegister}) {
             if(currentContact.email === email){
         
                 const response = await apiMongoDB.put(`/update/${currentContact._id}`,{
-                    name,
+                    username,
                     phone,
                     cpf,
                     street,
@@ -48,7 +48,7 @@ function EditRegister ({setEditeRegister}) {
             } else {
                         
                 const response = await apiMongoDB.put(`/update/${currentContact._id}`,{
-                    name,
+                    username,
                     email,
                     phone,
                     cpf,
@@ -73,7 +73,7 @@ function EditRegister ({setEditeRegister}) {
             const contactEditingFind = localContacts.find((contact)=>contact._id === currentContact._id)
 
 
-            contactEditingFind.name = name;
+            contactEditingFind.username = username;
             contactEditingFind.email = email;
             contactEditingFind.phone = phone;
             contactEditingFind.cpf = cpf;
@@ -95,10 +95,10 @@ function EditRegister ({setEditeRegister}) {
         if(!currentContact) return
 
         const {
-            name, email, phone, cpf, street, number, city, country
+            username, email, phone, cpf, street, number, city, country
         } = currentContact
 
-        setName(name)
+        setUsername(username)
         setEmail(email)
         phone && setPhone(phone)
         cpf && setCpf(cpf)
@@ -115,9 +115,9 @@ function EditRegister ({setEditeRegister}) {
                 <h2>Editar Registro</h2>
                 <DivInput>
                     <div className='cell01'>
-                        <input type='text' name='name' placeholder='Nome'
-                            value={name}
-                            onChange={(e)=>setName(e.target.value)}
+                        <input type='text' name='name' placeholder='username'
+                            value={username}
+                            onChange={(e)=>setUsername(e.target.value)}
                         />
                         <input type='text' name='email' placeholder='Email' 
                             value={email}

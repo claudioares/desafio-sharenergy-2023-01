@@ -15,5 +15,12 @@ export const api =  axios.create({
     timeout: 10000,
 });
 
+export const apiRandomDog = axios.create({
+    baseURL: 'https://random.dog/',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    timeout: 1000,
+})
 
 export default apiMongoDB;
