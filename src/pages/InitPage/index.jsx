@@ -16,6 +16,7 @@ import { useState, useContext, useEffect } from 'react';
 import arrowRight from '../../assets/Login/arrowRight.svg';
 import { useNavigate } from 'react-router-dom';
 import { ContextApi } from '../../components/context/ContextApi';
+import ErrorMenssage from '../../components/errorMenssage';
 
 
 function InitPage () {
@@ -35,6 +36,9 @@ function InitPage () {
     const [nameSN, setNameSN] = useState('')
     const [emailSN, setEmailSN] = useState('')
     const [passwordSN, setPasswordSN] = useState('')
+
+    const [error, setError] = useState(false)
+    const [messageError, setMessageError] = useState('')
     
     function handleOpenSign () {        
         sign ? setSign(false) : setSign(true)
@@ -44,7 +48,10 @@ function InitPage () {
         e.preventDefault();
      
         try {
-            if(!nameSN || !emailSN || !passwordSN) return
+            if(!nameSN || !emailSN || !passwordSN){
+                errorMenssage('Preencha todos os dados!')
+                return;
+            }
 
             const response = await apiMongoDB.post('/sign', {
                 username: nameSN,
@@ -54,14 +61,16 @@ function InitPage () {
             if(response.status > 204) return;
             
             setSign(false)
-            
             setNameSN('')
             setEmailSN('')
             setPasswordSN('')
+            errorMenssage('Cadastro realizado com sucesso!')
         } catch (error) {
-            console.log(error.message)
+            errorMenssage('Cadastro não realizado. Revise seus dados!')
+            return;
         }
     }
+
 
 
 
@@ -69,6 +78,10 @@ function InitPage () {
         e.preventDefault();
 
         try {
+            if(!nameLGN || !passwordLGN) {
+                errorMenssage('Digite Login e senha!')
+                return;
+            }
             const response = await apiMongoDB.post('/login',{
                 username: nameLGN,
                 password: passwordLGN
@@ -89,7 +102,18 @@ function InitPage () {
 
         } catch (error) {
             console.log(error.message)
+            errorMenssage('Email ou senha inválido!')
         }
+    }
+
+
+
+    function errorMenssage (string){
+        setMessageError(string)
+        setError(true)
+        setTimeout(()=>{
+            setError(false)
+        }, 2000)
     }
 
     useEffect(()=>{
@@ -210,6 +234,12 @@ function InitPage () {
                 </FormSign>}
             </Body>
             <LoginBar />
+
+            {error && 
+                <ErrorMenssage
+                    messageError={messageError}
+                />
+            }
         </ContainerLogin>
     )
 }
