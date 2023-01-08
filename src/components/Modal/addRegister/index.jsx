@@ -7,6 +7,7 @@ import { useContext, useState } from 'react';
 import apiMongoDB from '../../../services/api';
 import { ContextApi } from '../../context/ContextApi';
 import ErrorMenssage from '../../errorMenssage';
+import InputMask from 'react-input-mask'
 
 
 
@@ -17,7 +18,7 @@ function AddRegister () {
         token, contacts, 
         setContacts, error, 
         errorMenssage, setModified,
-        setAddRegister
+        setAddRegister, setError
      } = useContext(ContextApi)
 
     const [ username, setUsername ] = useState('')
@@ -56,8 +57,8 @@ function AddRegister () {
                 }
             }
             );
-
-            if(response > 204) return
+            
+            if(response > 204) return;
 
             
             const localContacts = [ response.data.createUser, ...contacts]
@@ -70,7 +71,11 @@ function AddRegister () {
             })
 
         } catch (error) {
-            console.log(error)
+            console.log(error.response)
+            if(error.response.data.message === 'This email already exists!'){
+                errorMenssage("O email já existe!")
+            }
+
         }
     }
     return(
@@ -83,18 +88,18 @@ function AddRegister () {
                             value={username}
                             onChange={(e)=>setUsername(e.target.value)}
                         />
-                        <input type='text' name='email' placeholder='Email' 
+                        <input type='email' name='email' placeholder='Email' 
                             value={email}
                             onChange={(e)=>setEmail(e.target.value)}
                         />
                     </div>
 
                     <div className='cell02'>
-                        <input type='text' name='phone' placeholder='Telefone: (00)0 0000-0000'
+                        <InputMask mask='(99)99999-9999' type='text' name='phone' placeholder='Telefone: (00)0 0000-0000'
                             value={phone}
                             onChange={(e)=>setPhone(e.target.value)}
                         />
-                        <input type='text' name='cpf' placeholder='CPF'
+                        <InputMask mask='999.999.999-99' type='text' name='cpf' placeholder='000.000.000-00'
                             value={cpf}
                             onChange={(e)=>setCpf(e.target.value)}
                         />

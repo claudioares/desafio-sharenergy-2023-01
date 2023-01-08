@@ -101,8 +101,7 @@ function InitPage () {
             setPasswordLGN('');
 
         } catch (error) {
-            console.log(error.message)
-            errorMenssage('Email ou senha inválido!')
+            console.log(error)
         }
     }
 
@@ -146,7 +145,7 @@ function InitPage () {
                             onChange={(e)=> setEmailLGN(e.target.value)}
                         />
                         <input 
-                            type='text' 
+                            type='password' 
                             name='password' 
                             placeholder='Password'
                             value={passwordLGN}
@@ -196,7 +195,7 @@ function InitPage () {
                             onChange={(e)=> setNameSN(e.target.value)}
                         />
                         <input 
-                            type='text' 
+                            type='email' 
                             name='email' 
                             placeholder='Email'
                             value={emailSN}

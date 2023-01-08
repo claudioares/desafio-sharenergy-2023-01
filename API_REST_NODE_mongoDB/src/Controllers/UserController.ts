@@ -9,9 +9,14 @@ class UserController {
         try {
             const {username, email, password} = req.body;
             const userAlreadyExists = await UserListing.findOne({username:username});
-
+            const emailAlreadyExists = await UserListing.findOne({email:email});
             
-            if(userAlreadyExists) return res.status(400).json({message: "This username already exists!"});
+            if(userAlreadyExists) {
+                return res.status(400).json({message: "This username already exists!"});
+            }
+            if(emailAlreadyExists) return res.status(400).json({message: "This Email already exists!"});
+
+            console.log('passou por aqui')
             if(!username || !email || !password) return res.status(400).json({message: "All parameters required"})
 
             const cryptPassword = await bcrypt.hash(password, 10)
