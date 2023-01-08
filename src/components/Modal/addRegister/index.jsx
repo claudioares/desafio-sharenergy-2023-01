@@ -1,18 +1,23 @@
 import {
     ContainerModal,
-    ContenteModal,
-    DivInput,
-    DivButtons
+    ContenteModal, DivButtons, DivInput
 } from './styled';
 
+import { useContext, useState } from 'react';
 import apiMongoDB from '../../../services/api';
-import { useState, useContext } from 'react';
 import { ContextApi } from '../../context/ContextApi';
+import ErrorMenssage from '../../errorMenssage';
 
-function AddRegister ({setAddRegister}) {
+
+
+
+function AddRegister () {
 
     const { 
-        token, contacts, setContacts
+        token, contacts, 
+        setContacts, error, 
+        errorMenssage, setModified,
+        setAddRegister
      } = useContext(ContextApi)
 
     const [ username, setUsername ] = useState('')
@@ -27,6 +32,11 @@ function AddRegister ({setAddRegister}) {
 
     async function handleSubmitModal (e) {
         e.preventDefault();
+
+        if(!username || !email || !phone || !cpf || !street || !number || !city || !country){
+            errorMenssage("Preencha todas as informações!")
+            return;
+        }
 
         try {
 
@@ -53,8 +63,11 @@ function AddRegister ({setAddRegister}) {
             const localContacts = [ response.data.createUser, ...contacts]
 
             setContacts(localContacts)
-            
             setAddRegister(false)
+            setModified({
+                status: true,
+                message: 'Adicionado com sucesso!'
+            })
 
         } catch (error) {
             console.log(error)
@@ -116,6 +129,7 @@ function AddRegister ({setAddRegister}) {
                     <button className='cancel' onClick={()=>setAddRegister(false)}>Cancelar</button>
                 </DivButtons>
             </ContenteModal>
+            {error && <ErrorMenssage />}
         </ContainerModal>
     )
 }

@@ -1,9 +1,13 @@
 import {
     ContainerErrorMessage
 } from "./styled";
+import { useContext } from 'react';
+import { ContextApi } from "../context/ContextApi";
 
+function ErrorMenssage () {
 
-function ErrorMenssage ({messageError}) {
+    const {messageError} = useContext(ContextApi);
+
     return(
         <ContainerErrorMessage>
             {

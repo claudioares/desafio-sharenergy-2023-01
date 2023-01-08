@@ -13,7 +13,26 @@ function ContextProvider ({children}) {
     const [ user, setUser, clearUser ] = useLocalStorage('user');
     const [ contacts, setContacts ] = useState([]);
     const [currentContact, setCurrentContact, clearCurrentContact] = useLocalStorage('current_contact')
+    const [editRegister, setEditeRegister] = useState(false)
+    const [addRegister, setAddRegister] = useState(false)
+    const [deleteRegister, setDeleteRegister] = useState(false)
     const LIMIT = 1000;
+
+    // function error
+    const [modified, setModified] = useState({
+        status: false,
+        message: ''
+    })
+    const [error, setError] = useState(false)
+    const [messageError, setMessageError] = useState('')
+    function errorMenssage (string){
+        setMessageError(string)
+        setError(true)
+        setTimeout(()=>{
+            setError(false)
+        }, 2000)
+    }
+    // 
 
     useEffect(()=>{
         async function loadClients () {
@@ -30,7 +49,12 @@ function ContextProvider ({children}) {
             token, setToken, clearToken,
             user, setUser, clearUser,
             contacts, setContacts,
-            currentContact, setCurrentContact, clearCurrentContact
+            currentContact, setCurrentContact, clearCurrentContact,
+            error, setError, messageError, setMessageError,
+            errorMenssage, modified, setModified,
+            editRegister, setEditeRegister,
+            addRegister, setAddRegister,
+            deleteRegister, setDeleteRegister
         }} >
             {children}
         </ContextApi.Provider>

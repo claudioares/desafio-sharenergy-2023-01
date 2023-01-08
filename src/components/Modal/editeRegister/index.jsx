@@ -7,11 +7,14 @@ import {
 import apiMongoDB from '../../../services/api';
 import { useState, useContext, useEffect } from 'react';
 import { ContextApi } from '../../context/ContextApi';
+import ErrorMenssage from '../../errorMenssage';
 
-function EditRegister ({setEditeRegister}) {
+function EditRegister () {
 
     const { 
-        currentContact, token, contacts, setContacts
+        currentContact, token, contacts, 
+        error, errorMenssage, setModified,
+        setEditeRegister
      } = useContext(ContextApi)
 
     const [ username, setUsername ] = useState('')
@@ -27,6 +30,10 @@ function EditRegister ({setEditeRegister}) {
     async function handleSubmit(e){
         e.preventDefault();
 
+        if(!username || !email || !phone || !cpf || !street || !number || !city || !country){
+            errorMenssage("Preencha todas as informações!")
+            return;
+        }
         try {
             if(currentContact.email === email){
         
@@ -67,12 +74,11 @@ function EditRegister ({setEditeRegister}) {
 
             };
             
-            setEditeRegister(false);
-
+            
             const localContacts = [...contacts];
             const contactEditingFind = localContacts.find((contact)=>contact._id === currentContact._id)
-
-
+            
+            
             contactEditingFind.username = username;
             contactEditingFind.email = email;
             contactEditingFind.phone = phone;
@@ -81,9 +87,14 @@ function EditRegister ({setEditeRegister}) {
             contactEditingFind.number = number;
             contactEditingFind.city = city;
             contactEditingFind.country = country;
-
+            
             // setContacts([...contactEditingFind]);
-
+            
+            setEditeRegister(false);
+            setModified({
+                status: true,
+                message: 'Editado com sucesso!'
+            })
 
         } catch (error) {
             console.log(error)
@@ -108,6 +119,7 @@ function EditRegister ({setEditeRegister}) {
         country && setCountry(country)
 
     }, [currentContact])
+
 
     return(
         <ContainerModal>
@@ -165,6 +177,7 @@ function EditRegister ({setEditeRegister}) {
                     <button className='cancel' onClick={()=>setEditeRegister(false)}>Cancelar</button>
                 </DivButtons>
             </ContenteModal>
+            {error && <ErrorMenssage />}
         </ContainerModal>
     )
 }

@@ -23,7 +23,9 @@ function InitPage () {
     const {
         token,
         setToken,
-        setUser
+        setUser,
+        errorMenssage,
+        error:errorApi
     } = useContext(ContextApi)
     const navigate = useNavigate();
     const[sign, setSign] = useState(true)
@@ -72,8 +74,6 @@ function InitPage () {
     }
 
 
-
-
     async function handleSubmitLogin (e) {
         e.preventDefault();
 
@@ -104,16 +104,6 @@ function InitPage () {
             console.log(error.message)
             errorMenssage('Email ou senha inválido!')
         }
-    }
-
-
-
-    function errorMenssage (string){
-        setMessageError(string)
-        setError(true)
-        setTimeout(()=>{
-            setError(false)
-        }, 2000)
     }
 
     useEffect(()=>{
@@ -235,10 +225,8 @@ function InitPage () {
             </Body>
             <LoginBar />
 
-            {error && 
-                <ErrorMenssage
-                    messageError={messageError}
-                />
+            {errorApi && 
+                <ErrorMenssage />
             }
         </ContainerLogin>
     )

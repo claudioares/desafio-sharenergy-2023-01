@@ -1,18 +1,18 @@
+import { useContext, useEffect, useState } from 'react';
+import iconEdit from '../../assets/RegisterCLientes/iconEdit.svg';
+import iconTrash from '../../assets/RegisterCLientes/iconTrash.svg';
+import { ContextApi } from '../../components/context/ContextApi';
+import ErrorMenssage from '../../components/errorMenssage';
+import AddRegister from '../../components/Modal/addRegister';
+import DeleteRegister from '../../components/Modal/deleteRegister';
+import EditeRegister from '../../components/Modal/editeRegister';
+import apiMongoDB from '../../services/api';
 import {
     ContainerClientListen,
     ContentBodyClient,
-    ContenteTable,
-    RegisterClient,
-    DivRegister
-} from './styled'
-import iconEdit from '../../assets/RegisterCLientes/iconEdit.svg';
-import iconTrash from '../../assets/RegisterCLientes/iconTrash.svg';
-import AddRegister from '../../components/Modal/addRegister';
-import EditeRegister from '../../components/Modal/editeRegister';
-import DeleteRegister from '../../components/Modal/deleteRegister';
-import { useEffect, useState, useContext } from 'react';
-import apiMongoDB from '../../services/api';
-import { ContextApi } from '../../components/context/ContextApi';
+    ContenteTable, DivRegister, 
+    RegisterClient
+} from './styled';
 
 
 
@@ -21,11 +21,13 @@ import { ContextApi } from '../../components/context/ContextApi';
 function ClientListen () {
 
     const {
-        token, contacts, setContacts, setCurrentContact
+        token, contacts, setContacts, 
+        setCurrentContact, modified, 
+        setModified, errorMenssage, error,
+        editRegister, setEditeRegister,
+        addRegister, setAddRegister,
+        deleteRegister, setDeleteRegister
     } = useContext(ContextApi)
-    const [addRegister, setAddRegister] = useState(false)
-    const [editRegister, setEditeRegister] = useState(false)
-    const [deleteRegister, setDeleteRegister] = useState(false)
 
     function handleEditRegister (contact) {
         setEditeRegister(true); 
@@ -41,7 +43,7 @@ function ClientListen () {
         setCurrentContact(contact)
     }
 
-
+    
     useEffect(()=>{
         async function loadContacts () {
             try {
@@ -50,18 +52,36 @@ function ClientListen () {
                         Authorization: `${token}`
                     }
                 })
-
+                
                 if(response.status > 204) return;
-
+                
                 setContacts([...response.data])
                 
             } catch (error) {
                 console.log(error)
             }
         }
-
+        
         loadContacts()
     }, [])
+
+
+
+    
+
+
+    useEffect(()=>{
+        if(modified.status){
+            errorMenssage(modified.message) 
+        }
+        setModified({
+            status: false,
+            message: ''
+        })
+        return
+    }, [editRegister, addRegister, deleteRegister])
+
+
     return(
         <ContainerClientListen>
             <ContentBodyClient>
@@ -108,10 +128,10 @@ function ClientListen () {
                     </button>
                 </DivRegister>
             </RegisterClient>
-            { addRegister && <AddRegister setAddRegister={setAddRegister}/>}
-            { editRegister && <EditeRegister setEditeRegister={setEditeRegister}/>}
-            { deleteRegister && <DeleteRegister setDeleteRegister={setDeleteRegister} />}
-            
+            { addRegister && <AddRegister />}
+            { editRegister && <EditeRegister />}
+            { deleteRegister && <DeleteRegister />}
+            {error && <ErrorMenssage />}
         </ContainerClientListen>
     )
 }

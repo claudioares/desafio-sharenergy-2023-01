@@ -7,9 +7,16 @@ import apiMongoDB from '../../../services/api';
 import { useContext } from 'react'
 import { ContextApi } from '../../context/ContextApi' 
 
-function AddRegister ({setDeleteRegister}) {
+function AddRegister () {
 
-    const {currentContact, token, contacts, setContacts} = useContext(ContextApi)
+    const {
+        currentContact, 
+        token, 
+        contacts, 
+        setContacts,
+        setDeleteRegister,
+        setModified
+    } = useContext(ContextApi)
 
 
     async function hendleSubmit (e) {
@@ -32,6 +39,11 @@ function AddRegister ({setDeleteRegister}) {
 
             setContacts([...localContacts])
             setDeleteRegister(false)
+
+            setModified({
+                status: true,
+                message: 'Deletado com sucesso!'
+            })
 
         } catch (error) {
             console.log(error.message)
