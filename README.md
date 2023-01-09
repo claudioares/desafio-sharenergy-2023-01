@@ -6,7 +6,10 @@ Também foi usado neste projeto: [npm-react-input-mask] para inserção de masca
 
 ### Scripts disponíveis
 
-No diretório do projeto, você pode executar:
+Ao iniciar este projeto, voce deve executar a API que esta na pasta API_REST_NODE_mongoDB.
+Lá também está o README com as instruções da api.
+
+No diretório deste projeto, você pode executar:
 
 ### `npm i`
 
@@ -17,7 +20,13 @@ Para criar todas as dipendências nescessárias para o projeto
 Executa o aplicativo no modo de desenvolvimento.\
 Abra [http://localhost:5173/](http://localhost:5173/) para visualizá-lo em seu navegador.
 
+#### Importante:
+- Os dois projetos, backend e frontend, devem estar excutando simultaneamente para que a aplicação responde de forma correta.
+
+
 A página será recarregada quando você fizer alterações no codigo.\
 Você também pode ver erros de lint no console.
 
-Para mais informações visite: (https://vitejs.dev/ / https://styled-components.com/ / https://pt-br.reactjs.org/)
+Para mais informações sobre as tecnoligias aplicadas neste projeto visite:
+(https://vitejs.dev/ / https://styled-components.com/ / https://pt-br.reactjs.org/)
+ 
