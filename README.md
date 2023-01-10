@@ -21,7 +21,7 @@ Executa o aplicativo no modo de desenvolvimento.\
 Abra [http://localhost:5173/](http://localhost:5173/) para visualizá-lo em seu navegador.
 
 #### Importante:
-- Os dois projetos, backend e frontend, devem estar excutando simultaneamente para que a aplicação responde de forma correta.
+- Os dois projetos, backend e frontend, devem estar excutando simultaneamente para que a aplicação responda de forma correta.
 
 
 A página será recarregada quando você fizer alterações no codigo.\
