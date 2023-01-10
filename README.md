@@ -31,5 +31,5 @@ Para mais informações sobre as tecnoligias aplicadas neste projeto visite:
 (https://vitejs.dev/ / https://styled-components.com/ / https://pt-br.reactjs.org/)
 
 Link do video de apresentação:
-https://www.youtube.com/watch?v=pwpRWdFCHV0
+[https://www.youtube.com/watch?v=pwpRWdFCHV0](https://youtu.be/nzEWRrL-MiE)
  
