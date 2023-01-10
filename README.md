@@ -15,7 +15,7 @@ No diretório deste projeto, você pode executar:
 
 Para criar todas as dipendências nescessárias para o projeto
 
-### `npm start`
+### `npm run dev`
 
 Executa o aplicativo no modo de desenvolvimento.\
 Abra [http://localhost:5173/](http://localhost:5173/) para visualizá-lo em seu navegador.
