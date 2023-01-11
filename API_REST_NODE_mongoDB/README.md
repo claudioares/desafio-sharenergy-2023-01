@@ -1,7 +1,9 @@
 # Desafio Sharenergy - Backend
 
-## Antes de iniar o projeto faça: "npm i" para baixar todas as dependencias.
-## No terminal inicie a aplicação com: "npm run dev"
+### No terminal:
+- Antes de inciar o projeto faça: "npm i" para baixar todas as dependencias e inicie a aplicação com: "npm run dev"
+
+
 
 Esta é uma construção RESTful API que permite:
 
