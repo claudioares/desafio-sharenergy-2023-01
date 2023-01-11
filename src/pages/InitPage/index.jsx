@@ -153,7 +153,9 @@ function InitPage () {
                             onChange={(e)=> setPasswordLGN(e.target.value)}
                         />
                     </DivInput>
-                    <button>LOGIN</button>
+                    <DivButton>
+                        <button>LOGIN</button>
+                    </DivButton>
 
                     <DivSpan>
                         <p>Não é cadastrado?</p>
