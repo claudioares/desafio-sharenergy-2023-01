@@ -47,35 +47,6 @@ export const Body = styled.div`
         text-align: center;
     }
 
-    button{
-        all: unset;
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        min-width: 23rem;
-        height: 6rem;
-
-        background-color: #00A2A2;
-        color:  #ffffff;
-        border-radius: 1rem;
-        
-        cursor: pointer;
-
-        bottom: 16%;
-
-        transition-timing-function: ease;
-        transition-duration: 0.5s;
-        
-        &:hover{
-            
-            transform: translateY(-15px);
-           
-        }
-    }
-    
-
 `
 export const DivLeft = styled.div`
     display: flex;
@@ -142,6 +113,45 @@ export const DivInput = styled.div`
         }
     }
     margin-bottom: 5rem;
+`
+export const DivButton = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 23rem;
+    height: 6rem;
+
+    margin-bottom: 5%;
+
+    button{
+        all: unset;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        min-width: 23rem;
+        height: 6rem;
+
+        background-color: #00A2A2;
+        color:  #ffffff;
+        border-radius: 1rem;
+        
+        cursor: pointer;
+
+        bottom: 16%;
+
+        transition-timing-function: ease;
+        transition-duration: 0.5s;
+        
+        &:hover{
+            
+            transform: translateY(-15px);
+           
+        }
+    }
+
 `
 export const ImgUser = styled.div`
     position: absolute;

@@ -4,7 +4,8 @@ import {
     ImgUser, ImgPassword,
     DivLeft, ImgEmail, 
     FormLogin, DivSpan,
-    ImgEmailLogin, FormSign
+    ImgEmailLogin, FormSign,
+    DivButton
 } from './styled';
 import LoginBar from '../../components/Loginbar';
 import logo from '../../assets/LoginBar/logo.svg';
@@ -209,9 +210,9 @@ function InitPage () {
                             onChange={(e)=> setPasswordSN(e.target.value)}
                         />
                     </DivInput>
-
-                    <button>CADASTRAR</button>
-
+                    <DivButton>
+                        <button>CADASTRAR</button>
+                    </DivButton>
                     <DivSpan>
                         <p>Já é cadastrado?</p>
                         <img 
