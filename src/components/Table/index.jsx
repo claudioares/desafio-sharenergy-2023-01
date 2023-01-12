@@ -2,7 +2,8 @@ import {
     ContainerTable,
     DivSearch,
     Img,
-    DivTable
+    DivTable,
+    ContentTable
 } from './styled';
 import iconSearch from '../../assets/Table/iconSearch.svg';
 import Pagination from '../../pagination/pagination';
@@ -72,7 +73,7 @@ function Table () {
     return(
 
         <ContainerTable>
-            <div>
+            <ContentTable>
                 <DivSearch>
                     <h4>Escolha o modo de pesquisa!</h4>
                     <button 
@@ -139,7 +140,7 @@ function Table () {
                         setOffSet={setOffSet}
                     />
                 )}
-            </div>
+            </ContentTable>
         </ContainerTable>
     )
 }

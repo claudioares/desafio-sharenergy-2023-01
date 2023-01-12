@@ -4,11 +4,14 @@ import styled from "styled-components";
 export const ContainerTable = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
 
-    min-width: 80%;
     padding: 6.2rem 9.4rem 0 6.7rem;
    
+`
+export const ContentTable = styled.div`
+    max-width: 100%;
 `
 export const DivSearch = styled.div`
     position: relative;
@@ -92,8 +95,8 @@ export const DivTable = styled.table`
     }
     tr th{
         list-style: none;
-        width: 33.3rem;
-        height: 6.7rem;
+        min-width: 64.5%;
+        min-height: 6.7rem;
 
         display: flex;
         align-items: center;

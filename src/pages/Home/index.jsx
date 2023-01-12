@@ -1,4 +1,7 @@
-import {ContainerHome} from './styled';
+import {
+  ContainerHome,
+  BodyHome
+} from './styled';
 import SideBar from '../../components/SiderBar';
 import Table from '../../components/Table';
 
@@ -8,7 +11,9 @@ function Home() {
   return (
     <ContainerHome>
       <SideBar />
-      <Table/>
+      <BodyHome>
+        <Table/>
+      </BodyHome>
     </ContainerHome>
   )
 }
